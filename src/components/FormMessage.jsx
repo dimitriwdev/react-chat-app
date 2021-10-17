@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SendOutlined, PictureOutlined } from '@ant-design/icons';
+import { SendOutlined, UploadOutlined, LogoutOutlined } from '@ant-design/icons';
 import { sendMessage, isTyping } from 'react-chat-engine';
 
 const FormMessage = (props) => {
@@ -24,6 +24,11 @@ const FormMessage = (props) => {
     setValue('');
   };
 
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.reload()
+  }
+
   const handleUpload = (event) => {
     sendMessage(creds, chatId, { files: event.target.files, text: '' });
   };
@@ -37,21 +42,31 @@ const FormMessage = (props) => {
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
-      <label htmlFor="upload-button">
-        <span className="image-button">
-          <PictureOutlined className="picture-icon" />
-        </span>
-      </label>
-      <input
-        type="file"
-        multiple={false}
-        id="upload-button"
-        style={{ display: 'none' }}
-        onChange={handleUpload.bind(this)}
-      />
-      <button type="submit" className="send-button">
-        <SendOutlined className="send-icon" />
-      </button>
+      <div className='icon-container'>
+        <button type="button" className="form-button">
+          <LogoutOutlined className="form-logout-icon" onClick={handleLogout} />
+        </button>
+        <div className='send-icon-container'>
+          <button type="button" className="form-upload-button">
+            <label htmlFor="upload-button">
+              <span className="form-icon">
+                <UploadOutlined className="picture-icon" />
+              </span>
+            </label>
+          </button>
+          <input
+            type="file"
+            multiple={false}
+            id="upload-button"
+            style={{ display: 'none' }}
+            onChange={handleUpload.bind(this)}
+          />
+          <button type="submit" className="form-button">
+            <SendOutlined className="form-send-icon" />
+          </button>
+        </div>
+
+      </div>
     </form>
   );
 };
