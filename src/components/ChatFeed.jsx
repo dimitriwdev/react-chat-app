@@ -2,6 +2,7 @@ import React from 'react';
 import MyMessage from './MyMessage';
 import OtherMessage from './OtherMessage';
 import FormMessage from './FormMessage';
+import { LogoutOutlined } from '@ant-design/icons';
 
 const ChatFeed = (props) => {
   const { chats, activeChat, userName, messages } = props;
@@ -18,6 +19,11 @@ const ChatFeed = (props) => {
       }}
     />
   ));
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.reload()
+  }
 
   const renderMessages = () => {
     const keys = Object.keys(messages);
@@ -43,7 +49,7 @@ const ChatFeed = (props) => {
   };
 
   if (!chat) return <div />;
-
+  console.log(chat.people)
   return (
     <div className="chat-feed">
       <div className="chat-title-container">
@@ -51,6 +57,9 @@ const ChatFeed = (props) => {
         <div className="chat-subtitle">
           {chat.people.map((person) => ` ${person.person.username}`)}
         </div>
+        <button type="button" className="logout-button">
+          <LogoutOutlined className="form-logout-icon" onClick={handleLogout} />
+        </button>
       </div>
       {renderMessages()}
       <div style={{ height: '100px' }} />

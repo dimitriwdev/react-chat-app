@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SendOutlined, UploadOutlined, LogoutOutlined } from '@ant-design/icons';
+import { SendOutlined, UploadOutlined } from '@ant-design/icons';
 import { sendMessage, isTyping } from 'react-chat-engine';
 
 const FormMessage = (props) => {
@@ -43,9 +43,6 @@ const FormMessage = (props) => {
         onSubmit={handleSubmit}
       />
       <div className='icon-container'>
-        <button type="button" className="form-button">
-          <LogoutOutlined className="form-logout-icon" onClick={handleLogout} />
-        </button>
         <div className='send-icon-container'>
           <button type="button" className="form-upload-button">
             <label htmlFor="upload-button">
