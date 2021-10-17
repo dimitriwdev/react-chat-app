@@ -24,11 +24,6 @@ const FormMessage = (props) => {
     setValue('');
   };
 
-  const handleLogout = () => {
-    localStorage.clear();
-    window.location.reload()
-  }
-
   const handleUpload = (event) => {
     sendMessage(creds, chatId, { files: event.target.files, text: '' });
   };
